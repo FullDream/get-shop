@@ -1,0 +1,26 @@
+.wrapper {
+	padding: 20px 10px 10px 10px;
+	background-color: var(--main-color);
+	display: grid;
+	justify-items: center;
+	text-align: center;
+	position: fixed;
+	right: 0;
+	top: 220px;
+	width: 251px;
+	height: 357px;
+	gap: 20px;
+}
+.callToAction {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+}
+.qrCode {
+	width: 126px;
+	height: 126px;
+}
+.qrDescr,
+.qrCode {
+	padding: 0 52.5px;
+}

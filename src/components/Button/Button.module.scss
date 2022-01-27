@@ -1,0 +1,12 @@
+.button {
+	padding: 16px;
+	color: var(--main-color);
+	text-align: center;
+	min-width: 156px;
+	background-color: #000;
+	border: none;
+    transition: 0.3s;
+	&:hover {
+		transform: scale(1.05);
+	}
+}
