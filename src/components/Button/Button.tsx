@@ -5,21 +5,23 @@ import classNames from 'classnames'
 
 import styles from './Button.module.scss'
 
-const Button = ({ focusKey, typeBtn = 'default', focused, className, children, ...props }: ButtonProps) => {
+const Button = ({ focusKey, disabled, typeBtn = 'default', focused, className, children, ...props }: ButtonProps) => {
 	return (
 		<button
 			id={focusKey}
 			className={classNames(
 				styles.button,
 				{
-					[styles.close]:  typeBtn = 'close',
+					[styles.close]: typeBtn === 'close',
 					[styles.active]: focused,
+					// [styles.disabled]: disabled,
 				},
 				className
 			)}
+			disabled={disabled}
 			{...props}
 		>
-			{typeBtn === 'close' ? <CloseBtn/> : children}
+			{typeBtn === 'close' ? <CloseBtn /> : children}
 		</button>
 	)
 }

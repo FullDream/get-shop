@@ -80,6 +80,7 @@ declare module '@noriginmedia/react-spatial-navigation' {
 		parentFocusKey: string
 		preferredChildFocusKey: string
 		focused: boolean
+		
 		hasFocusedChild: boolean
 		setFocus: (focusKey?: string) => void
 		stealFocus: () => void
@@ -103,6 +104,11 @@ declare module '@noriginmedia/react-spatial-navigation' {
 		focusKey?: string
 		className?: string
 		typeBtn?: 'default' | 'close'
+		name?: string | number
+		checked?: boolean
+		disabled?: boolean
+		blockNavigationOut?: boolean
+		onClick?: () => void
 		onEnterPress?: () => void
 		/**
 		 * @param direction
@@ -123,6 +129,7 @@ declare module '@noriginmedia/react-spatial-navigation' {
 
 	interface withFocusableOpts {
 		trackChildren?: boolean
+		blockNavigationOut?: boolean
 		forgetLastFocusedChild?: boolean
 	}
 

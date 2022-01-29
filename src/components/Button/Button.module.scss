@@ -7,12 +7,18 @@
 	border: 2px solid #000;
 	transition: 0.3s;
 	position: relative;
+	text-transform: uppercase;
+	font-weight: 500;
 	&:hover {
 		transform: scale(1.05);
 	}
+	&:disabled {
+		border: 2px solid #4e4e4e;
+		color: #4e4e4e;
+	}
 }
 .close {
-		background-color: #fff;
+	background-color: #fff;
 }
 
 .active {
@@ -24,4 +30,7 @@
 	}
 }
 
-
+.disabled {
+	border: 2px solid #4e4e4e;
+	color: #4e4e4e;
+}
