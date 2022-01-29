@@ -1,0 +1,28 @@
+.wrapper {
+	display: grid;
+	justify-items: center;
+	justify-content: center;
+	grid-template-columns: 1fr;
+	gap: 13px;
+}
+.title {
+    margin: 0;
+    padding: 0;
+	font-size: 26px;
+	line-height: 30px;
+	font-weight: normal;
+	text-align: center;
+}
+.input {
+	font-weight: bold;
+	font-size: 32px;
+	line-height: 37px;
+	background-color: transparent;
+	border: none;
+	width: 100%;
+	text-align: center;
+}
+.descr {
+	text-align: center;
+	padding: 0 20px;
+}

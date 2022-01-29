@@ -1,0 +1,42 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.panel {
+    height: 100vh;
+    background-color: var(--main-color);
+    width: 350px;
+    padding: 72px 48px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 88px;
+    padding: 11px;
+}
+
+.qrCode {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 314px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: end;
+    gap: 10px;
+    font-weight: 500;
+    color: #fff;
+    &Img {
+        width: 110px;
+        height: 110px;
+    }
+}

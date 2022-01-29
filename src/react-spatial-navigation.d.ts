@@ -101,6 +101,8 @@ declare module '@noriginmedia/react-spatial-navigation' {
 		trackChildren?: boolean
 		forgetLastFocusedChild?: boolean
 		focusKey?: string
+		className?: string
+		typeBtn?: 'default' | 'close'
 		onEnterPress?: () => void
 		/**
 		 * @param direction
