@@ -21,7 +21,7 @@ const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
 
 	useEffect(() => {
 		const handleKeyUp = (event: KeyboardEvent) => {
-			const [resKeyDown] = numData.filter((item) => {
+			const resKeyDown = numData.filter((item) => {
 				const itemString = item.toString()
 				if (itemString === event.key) {
 					return itemString
@@ -30,10 +30,13 @@ const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
 				}
 			})
 
-			if (resKeyDown === 'стереть') {
+			// console.log([resKeyDown].toString());
+			
+			const keyDown = [resKeyDown].toString()
+			if (keyDown === 'стереть') {
 				setPhone((oldPhone) => oldPhone.slice(0, -1))
-			} else if (resKeyDown && phone.length <= 10) {
-				setPhone((oldPhone) => oldPhone + resKeyDown)
+			} else if (keyDown && phone.length <= 10) {
+				setPhone((oldPhone) => oldPhone + keyDown)
 			}
 		}
 

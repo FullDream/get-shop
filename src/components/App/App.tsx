@@ -9,7 +9,11 @@ import { useEffect, useRef, useState } from 'react'
 import Button from '../Button/Button'
 import Promo from '../Promo/Promo'
 
-const App = ({ setFocus }: any) => {
+interface AppProps {
+	setFocus: (focusKey?: string) => void
+}
+
+const App = ({ setFocus }: AppProps) => {
 	const videoRef = useRef<HTMLVideoElement>(null)
 
 	const [isActite, setIsActive] = useState<boolean>(false),
@@ -19,7 +23,7 @@ const App = ({ setFocus }: any) => {
 		setTimeout(() => {
 			setIsActive(true)
 			setFocus()
-		}, 2000)
+		}, 1000)
 	}, [])
 
 	const onActivePromo = () => {
