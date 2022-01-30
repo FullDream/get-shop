@@ -1,17 +1,16 @@
+import { useEffect, useRef, useState } from 'react'
 import { withFocusable } from '@noriginmedia/react-spatial-navigation'
+import { AppProps } from './App.props'
+
 import styles from './App.module.scss'
 
 import Video from '../Video/Video'
 import Banner from '../Banner/Banner'
-
-import movie from './../../movie/volvo.mp4'
-import { useEffect, useRef, useState } from 'react'
 import Button from '../Button/Button'
 import Promo from '../Promo/Promo'
 
-interface AppProps {
-	setFocus: (focusKey?: string) => void
-}
+import movie from './../../movie/volvo.mp4'
+
 
 const App = ({ setFocus }: AppProps) => {
 	const videoRef = useRef<HTMLVideoElement>(null)
@@ -20,10 +19,16 @@ const App = ({ setFocus }: AppProps) => {
 		[isOpenPromo, setOpenPromo] = useState<boolean>(false)
 
 	useEffect(() => {
-		setTimeout(() => {
+		let timerId: number
+
+		timerId = window.setTimeout(() => {
 			setIsActive(true)
 			setFocus()
 		}, 1000)
+
+		return () => {
+			window.clearTimeout(timerId)
+		}
 	}, [])
 
 	const onActivePromo = () => {

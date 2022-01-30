@@ -1,5 +1,5 @@
 .wrapper {
-	border: 2px solid #000000;
+	border: 2px solid var(--second-color);
 	height: 40px;
 	width: 40px;
     position: relative;
@@ -27,8 +27,8 @@
 }
 
 .focused {
-    background-color: #000000;
+    background-color: var(--second-color);
     line {
-        stroke: #fff;
+        stroke: var(--third-color);
     }
 }

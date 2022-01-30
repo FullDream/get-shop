@@ -1,4 +1,4 @@
-import { NumberProps } from './Number.props'
+import { EntryTelProps } from './EntryTel.props'
 import { useEffect, useState } from 'react'
 import { IMaskInput } from 'react-imask'
 import FocusableButton from '../Button/Button'
@@ -8,7 +8,7 @@ import styles from './EntryTel.module.scss'
 import { numData } from './numData'
 import classNames from 'classnames'
 
-const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
+const EntryTel = ({ isValid, onSubmitNumber }: EntryTelProps) => {
 	const [isChecked, setChecked] = useState<boolean>(false)
 	const [phone, setPhone] = useState<string>('')
 	const [isFullNumber, setFullNumber] = useState<boolean>(false)
@@ -16,11 +16,18 @@ const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
 	useEffect(() => {
 		if (phone?.length === 11 && isChecked) {
 			setFullNumber(true)
+		} else if (phone?.length > 11) {
+			setPhone((oldPhone) => oldPhone.slice(0, 11))
+			setFullNumber(true)
+		} else {
+			setFullNumber(false)
 		}
 	}, [phone, isFullNumber, isChecked])
 
 	useEffect(() => {
 		const handleKeyUp = (event: KeyboardEvent) => {
+			console.log(phone)
+
 			const resKeyDown = numData.filter((item) => {
 				const itemString = item.toString()
 				if (itemString === event.key) {
@@ -30,9 +37,8 @@ const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
 				}
 			})
 
-			// console.log([resKeyDown].toString());
-			
 			const keyDown = [resKeyDown].toString()
+
 			if (keyDown === 'стереть') {
 				setPhone((oldPhone) => oldPhone.slice(0, -1))
 			} else if (keyDown && phone.length <= 10) {
@@ -42,9 +48,10 @@ const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
 
 		window.addEventListener('keydown', handleKeyUp)
 
-		return () => window.removeEventListener('keyup', handleKeyUp)
+		return () => {
+			window.removeEventListener('keyup', handleKeyUp)
+		}
 	}, [])
-
 
 	const onWriteNum = (item: number | 'стереть') => {
 		if (typeof item === 'number' && phone.length <= 10) {

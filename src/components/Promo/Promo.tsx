@@ -10,18 +10,15 @@ import Thanks from '../Thanks/Thanks'
 
 import bgDog from '../../img/dog.jpg'
 import qrImg from '../../img/qr-code.jpg'
+import { Api } from '../../interface/api.interface'
 
 const Promo = ({ onClosePromo }: PromoProps) => {
 	const [isValid, setValid] = useState<boolean>(true)
 	const [isSuccess, setSuccess] = useState<boolean>(false)
 
-	useEffect(() => {
-		if (isValid) {
-		}
-	}, [isValid, isSuccess])
 
 	const onSubmitNumber = (phone: string) => {
-		request(phone).then((data) => {
+		request(phone).then((data: Api) => {
 			if (data.valid) {
 				setValid(data.valid)
 				setSuccess(true)

@@ -1,15 +1,19 @@
-
-body, html {
-  margin: 0;
-  height: 100vh;
-  background-color: #000;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  line-height: 16.41px;
-  font-size: 14px;
-  
-}
 :root {
-  --main-color: #86D3F4;
+	--main-color: #86d3f4;
+	--second-color: #000;
+	--third-color: #fff;
+  --error-color: #ea0000;
+	--disabled-color: #4e4e4e;
+  --personal-color: #565656;
 }
 
+body,
+html {
+	margin: 0;
+	height: 100vh;
+	background-color: var(--second-color);
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	line-height: 16.41px;
+	font-size: 14px;
+}

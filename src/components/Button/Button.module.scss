@@ -1,10 +1,10 @@
 .button {
 	padding: 16px;
-	color: #000;
+	color: var(--second-color);
 	text-align: center;
 	border: none;
 	background-color: transparent;
-	border: 2px solid #000;
+	border: 2px solid var(--second-color);
 	transition: 0.3s;
 	position: relative;
 	text-transform: uppercase;
@@ -13,24 +13,24 @@
 		transform: scale(1.05);
 	}
 	&:disabled {
-		border: 2px solid #4e4e4e;
-		color: #4e4e4e;
+		border: 2px solid var(--disabled-color);
+		color: var(--disabled-color);
 	}
 }
 .close {
-	background-color: #fff;
+	background-color: var(--third-color);
 }
 
 .active {
-	color: #fff;
-	background-color: #000;
+	color: var(--third-color);
+	background-color: var(--second-color);
 
 	svg line {
-		stroke: #fff;
+		stroke: var(--third-color);
 	}
 }
 
 .disabled {
-	border: 2px solid #4e4e4e;
-	color: #4e4e4e;
+	border: 2px solid var(--disabled-color);
+	color: var(--disabled-color);
 }
