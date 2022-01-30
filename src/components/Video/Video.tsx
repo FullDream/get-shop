@@ -8,11 +8,10 @@ const Video = forwardRef(
 			<video
 				ref={ref}
 				className={styles.video}
-				onClick={(event) => console.log(event)}
 				src={src}
 				autoPlay
 				muted
-				// controls
+				loop
 				{...props}
 			/>
 		)

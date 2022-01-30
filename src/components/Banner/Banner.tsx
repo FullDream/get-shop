@@ -1,11 +1,11 @@
-// import { BannerProps } from './Banner.props'
+import { BannerProps } from './Banner.props'
 
 import Button from '../Button/Button'
 import styles from './Banner.module.scss'
 
 import qrCode from '../../img/qr-code.jpg'
 
-const Banner = () => {
+const Banner = ({onActivePromo}: BannerProps) => {
 	return (
 		<div className={styles.wrapper}>
 			<span className={styles.callToAction}>
@@ -13,7 +13,11 @@ const Banner = () => {
 			</span>
 			<img className={styles.qrCode} src={qrCode} alt='Фото QR-кода' />
 			<span className={styles.qrDescr}>Сканируйте QR-код или нажмите ОК</span>
-			<Button onEnterPress={() => console.log('sdssdsd')} className={styles.button}>
+			<Button
+				onEnterPress={() => onActivePromo()}
+				onClick={() => onActivePromo()}
+				className={styles.button}
+			>
 				OK
 			</Button>
 		</div>

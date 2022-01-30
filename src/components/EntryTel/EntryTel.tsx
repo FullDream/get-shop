@@ -1,33 +1,54 @@
-// import { NumberProps } from './Number.props'
+import { NumberProps } from './Number.props'
 import { useEffect, useState } from 'react'
 import { IMaskInput } from 'react-imask'
-import request from '../../services'
 import FocusableButton from '../Button/Button'
 import Checkbox from '../Checkbox/Checkbox'
 
 import styles from './EntryTel.module.scss'
 import { numData } from './numData'
+import classNames from 'classnames'
 
-const EntryTel = () => {
+const EntryTel = ({ isValid, onSubmitNumber }: NumberProps) => {
 	const [isChecked, setChecked] = useState<boolean>(false)
-	const [phone, setPhone] = useState<string>('5454')
-	const [isValid, setValid] = useState<boolean>(true)
+	const [phone, setPhone] = useState<string>('')
+	const [isFullNumber, setFullNumber] = useState<boolean>(false)
 
 	useEffect(() => {
-		if (phone?.length === 11) {
-			request(phone).then((data) => {
-				setValid(data.valid)
-			})
-			console.log(isValid)
+		if (phone?.length === 11 && isChecked) {
+			setFullNumber(true)
 		}
-	}, [phone, isValid])
+	}, [phone, isFullNumber, isChecked])
+
+	useEffect(() => {
+		const handleKeyUp = (event: KeyboardEvent) => {
+			const [resKeyDown] = numData.filter((item) => {
+				const itemString = item.toString()
+				if (itemString === event.key) {
+					return itemString
+				} else if (item === 'стереть' && event.key === 'Backspace') {
+					return item
+				}
+			})
+
+			if (resKeyDown === 'стереть') {
+				setPhone((oldPhone) => oldPhone.slice(0, -1))
+			} else if (resKeyDown && phone.length <= 10) {
+				setPhone((oldPhone) => oldPhone + resKeyDown)
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyUp)
+
+		return () => window.removeEventListener('keyup', handleKeyUp)
+	}, [])
+
 
 	const onWriteNum = (item: number | 'стереть') => {
-		if (typeof item === 'number') {
+		if (typeof item === 'number' && phone.length <= 10) {
 			const itemString = item.toString()
 			setPhone((oldPhone) => oldPhone + itemString)
 		} else if (item === 'стереть') {
-			setPhone((oldPhone) => oldPhone.slice(0, -1) )
+			setPhone((oldPhone) => oldPhone.slice(0, -1))
 		}
 	}
 
@@ -35,14 +56,12 @@ const EntryTel = () => {
 		<div className={styles.wrapper}>
 			<h1 className={styles.title}>Введите ваш номер мобильного телефона</h1>
 			<IMaskInput
-				className={styles.input}
+				className={classNames(styles.input, { [styles.error]: !isValid })}
 				mask='+{7}(000)000-00-00'
 				lazy={false}
 				value={phone}
-				// onChange={(event) => setPhone(event.target.value)}
 				onAccept={(value, mask) => setPhone(mask.unmaskedValue)}
-
-				// readOnly
+				readOnly
 			/>
 			<p className={styles.descr}>
 				и с Вами свяжется наш менеждер для дальнейшей консультации
@@ -50,26 +69,37 @@ const EntryTel = () => {
 			<div className={styles.numPad}>
 				{numData.map((item) => (
 					<FocusableButton
+						focusKey={item.toString()}
 						onEnterPress={() => onWriteNum(item)}
-						onClick={() => {onWriteNum(item)}}
+						onClick={() => {
+							onWriteNum(item)
+						}}
 						className={item === 'стереть' ? styles.delete : ''}
 					>
 						{item}
 					</FocusableButton>
 				))}
 			</div>
-			<label className={styles.personal}>
-				<Checkbox
-					checked={isChecked}
-					onEnterPress={() => setChecked(!isChecked)}
-					name='personal'
-				/>
-				<p>Согласие на обработку персональных данных</p>
-			</label>
+			{isValid ? (
+				<label className={styles.personal}>
+					<Checkbox
+						checked={isChecked}
+						onEnterPress={() => setChecked(!isChecked)}
+						onClick={() => setChecked(!isChecked)}
+						name='personal'
+					/>
+					<p>Согласие на обработку персональных данных</p>
+				</label>
+			) : (
+				<span className={styles.errorMessage}>Неверно введён номер</span>
+			)}
+
 			<FocusableButton
-				focusable={isChecked}
-				disabled={!isChecked}
+				focusable={isChecked && isFullNumber}
+				disabled={!isChecked || !isFullNumber}
 				className={styles.accept}
+				onEnterPress={() => onSubmitNumber(phone)}
+				onClick={() => onSubmitNumber(phone)}
 			>
 				Подтвердить номер
 			</FocusableButton>

@@ -5,13 +5,15 @@ import Video from '../Video/Video'
 import Banner from '../Banner/Banner'
 
 import movie from './../../movie/volvo.mp4'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Button from '../Button/Button'
 import Promo from '../Promo/Promo'
 
 const App = ({ setFocus }: any) => {
+	const videoRef = useRef<HTMLVideoElement>(null)
+
 	const [isActite, setIsActive] = useState<boolean>(false),
-		  [isOpenPromo, setOpenPromo] = useState<boolean>(true)
+		[isOpenPromo, setOpenPromo] = useState<boolean>(false)
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -20,12 +22,22 @@ const App = ({ setFocus }: any) => {
 		}, 2000)
 	}, [])
 
+	const onActivePromo = () => {
+		setOpenPromo(true)
+		setIsActive(false)
+		videoRef.current?.pause()
+	}
+
+	const onClosePromo = () => {
+		setOpenPromo(false)
+		videoRef.current?.play()
+	}
 
 	return (
 		<div className={styles.app}>
-			<Video src={movie} />
-			{isActite && <Banner />}
-			{isOpenPromo && <Promo/>}
+			<Video ref={videoRef} src={movie} />
+			{isActite && <Banner onActivePromo={onActivePromo} />}
+			{isOpenPromo && <Promo onClosePromo={onClosePromo} />}
 		</div>
 	)
 }

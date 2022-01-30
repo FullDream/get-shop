@@ -40,6 +40,17 @@
 	grid-column: 1 / 3;
 }
 
+.error {
+	color: #ea0000;
+}
+.errorMessage {
+	color: #ea0000;
+	font-size: 16px;
+	line-height: 19px;
+	font-weight: 500;
+	height: 52px;
+}
+
 .personal {
 	display: grid;
 	grid-template-columns: auto 1fr;
