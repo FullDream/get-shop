@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
-import request from '../../services'
+import { useState } from 'react'
+
 import { PromoProps } from './Promo.props'
+import request from '../../services'
+import { Api } from '../../interface/api.interface'
 
 import styles from './Promo.module.scss'
 
@@ -10,12 +12,10 @@ import Thanks from '../Thanks/Thanks'
 
 import bgDog from '../../img/dog.jpg'
 import qrImg from '../../img/qr-code.jpg'
-import { Api } from '../../interface/api.interface'
 
-const Promo = ({ onClosePromo }: PromoProps) => {
+const Promo = ({ onClosePromo, ...props }: PromoProps) => {
 	const [isValid, setValid] = useState<boolean>(true)
 	const [isSuccess, setSuccess] = useState<boolean>(false)
-
 
 	const onSubmitNumber = (phone: string) => {
 		request(phone).then((data: Api) => {
@@ -32,6 +32,7 @@ const Promo = ({ onClosePromo }: PromoProps) => {
 		<div
 			className={styles.wrapper}
 			style={{ backgroundImage: `url(${bgDog})` }}
+			{...props}
 		>
 			<div className={styles.panel}>
 				{!isSuccess ? (
@@ -59,5 +60,7 @@ const Promo = ({ onClosePromo }: PromoProps) => {
 		</div>
 	)
 }
+
+// const FocusablePromo: any = withFocusable()(Promo)
 
 export default Promo

@@ -1,10 +1,10 @@
-import {ReactComponent as Check} from './check.svg'
-
+import classNames from 'classnames'
 import { CheckboxProps } from './Checkbox.props'
 
-
 import styles from './Checkbox.module.scss'
-import classNames from 'classnames'
+
+import {ReactComponent as Check} from './check.svg'
+
 import { withFocusable } from '@noriginmedia/react-spatial-navigation'
 
 const Checkbox = ({ focusKey, checked, focused, name, className, ...props }: CheckboxProps) => {

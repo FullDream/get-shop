@@ -5,6 +5,7 @@ import App from './components/App/App'
 import { initNavigation } from '@noriginmedia/react-spatial-navigation'
 
 initNavigation()
+
 ReactDOM.render(
 	<React.StrictMode>
 		<App />

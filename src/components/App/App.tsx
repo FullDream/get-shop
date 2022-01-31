@@ -6,7 +6,6 @@ import styles from './App.module.scss'
 
 import Video from '../Video/Video'
 import Banner from '../Banner/Banner'
-import Button from '../Button/Button'
 import Promo from '../Promo/Promo'
 
 import movie from './../../movie/volvo.mp4'
@@ -18,14 +17,18 @@ const App = ({ setFocus }: AppProps) => {
 	const [isActite, setIsActive] = useState<boolean>(false),
 		[isOpenPromo, setOpenPromo] = useState<boolean>(false)
 
+	
+	useEffect(() => {
+		setFocus()
+	}, [isActite])
+
 	useEffect(() => {
 		let timerId: number
 
 		timerId = window.setTimeout(() => {
 			setIsActive(true)
-			setFocus()
-		}, 1000)
-
+		}, 5000)
+		
 		return () => {
 			window.clearTimeout(timerId)
 		}

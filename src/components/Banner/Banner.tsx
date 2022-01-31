@@ -1,13 +1,14 @@
 import { BannerProps } from './Banner.props'
 
-import Button from '../Button/Button'
 import styles from './Banner.module.scss'
+
+import Button from '../Button/Button'
 
 import qrCode from '../../img/qr-code.jpg'
 
-const Banner = ({onActivePromo}: BannerProps) => {
+const Banner = ({ onActivePromo, ...props }: BannerProps) => {
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper} {...props}>
 			<span className={styles.callToAction}>
 				ИСПОЛНИТЕ МЕЧТУ ВАШЕГО МАЛЫША! <br /> ПОДАРИТЕ ЕМУ СОБАКУ!
 			</span>

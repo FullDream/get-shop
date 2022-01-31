@@ -1,6 +1,7 @@
-import { VideoProps } from './Video.props'
-import styles from './Video.module.scss'
 import { ForwardedRef, forwardRef } from 'react'
+import { VideoProps } from './Video.props'
+
+import styles from './Video.module.scss'
 
 const Video = forwardRef(
 	({ src, ...props }: VideoProps, ref: ForwardedRef<HTMLVideoElement>) => {

@@ -80,12 +80,13 @@ declare module '@noriginmedia/react-spatial-navigation' {
 		parentFocusKey: string
 		preferredChildFocusKey: string
 		focused: boolean
-		
+
 		hasFocusedChild: boolean
 		setFocus: (focusKey?: string) => void
 		stealFocus: () => void
 		pauseSpatialNavigation: () => void
 		resumeSpatialNavigation: () => void
+		
 	}
 	type Direction = 'up' | 'down' | 'left' | 'right'
 	interface onBecameFocusedRect {

@@ -1,5 +1,8 @@
-const _url: string = 'http://apilayer.net/api/validate'
-const _apiKey: string = 'dd2a53d050b753d53b1b07a92e8eb651'
+
+const _url = process.env.REACT_APP_NUMVEREFY_URL
+const _apiKey = process.env.REACT_APP_NUMVEREFY_API_KEY
+
+
 
 const request = async (number: string) => {
 	const result: any = await fetch(

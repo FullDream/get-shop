@@ -1,9 +1,10 @@
 import { withFocusable } from '@noriginmedia/react-spatial-navigation'
 import { ButtonProps } from './Button.props'
-import {ReactComponent as CloseBtn} from './close.svg'
 import classNames from 'classnames'
 
 import styles from './Button.module.scss'
+
+import {ReactComponent as CloseBtn} from './close.svg'
 
 const Button = ({ focusKey, disabled, typeBtn = 'default', focused, className, children, ...props }: ButtonProps) => {
 	return (

@@ -1,14 +1,16 @@
-import { EntryTelProps } from './EntryTel.props'
 import { useEffect, useState } from 'react'
 import { IMaskInput } from 'react-imask'
-import FocusableButton from '../Button/Button'
-import Checkbox from '../Checkbox/Checkbox'
-
-import styles from './EntryTel.module.scss'
-import { numData } from './numData'
 import classNames from 'classnames'
 
-const EntryTel = ({ isValid, onSubmitNumber }: EntryTelProps) => {
+import { EntryTelProps } from './EntryTel.props'
+
+import styles from './EntryTel.module.scss'
+
+import FocusableButton from '../Button/Button'
+import Checkbox from '../Checkbox/Checkbox'
+import { numData } from './numData'
+
+const EntryTel = ({ isValid, onSubmitNumber, ...props }: EntryTelProps) => {
 	const [isChecked, setChecked] = useState<boolean>(false)
 	const [phone, setPhone] = useState<string>('')
 	const [isFullNumber, setFullNumber] = useState<boolean>(false)
@@ -26,7 +28,6 @@ const EntryTel = ({ isValid, onSubmitNumber }: EntryTelProps) => {
 
 	useEffect(() => {
 		const handleKeyUp = (event: KeyboardEvent) => {
-			console.log(phone)
 
 			const resKeyDown = numData.filter((item) => {
 				const itemString = item.toString()
@@ -63,7 +64,7 @@ const EntryTel = ({ isValid, onSubmitNumber }: EntryTelProps) => {
 	}
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper} {...props}>
 			<h1 className={styles.title}>Введите ваш номер мобильного телефона</h1>
 			<IMaskInput
 				className={classNames(styles.input, { [styles.error]: !isValid })}

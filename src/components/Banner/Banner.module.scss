@@ -10,6 +10,8 @@
 	width: 251px;
 	height: 357px;
 	gap: 20px;
+
+	animation: activeBanner 1s;
 }
 .callToAction {
 	font-weight: 500;
@@ -27,4 +29,15 @@
 
 .button {
 	min-width: 156px;
+}
+
+@keyframes activeBanner  {
+	0% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
