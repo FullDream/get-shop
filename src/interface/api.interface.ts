@@ -1,12 +1,20 @@
-export interface Api {
-	valid: boolean
-	number: string
-	local_format: string
-	international_format: string
-	country_prefix: string
-	country_code: string
-	country_name: string
-	location: string
-	carrier: string
-	line_type: string
-}
+ export interface Format {
+		international: string
+		local: string
+ }
+
+ export interface Country {
+		code: string
+		name: string
+		prefix: string
+ }
+
+ export interface Api {
+		phone: string
+		valid: boolean
+		format: Format
+		country: Country
+		location: string
+		type: string
+		carrier: string
+ }
