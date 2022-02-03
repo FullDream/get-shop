@@ -87,6 +87,7 @@ declare module '@noriginmedia/react-spatial-navigation' {
 		pauseSpatialNavigation: () => void
 		resumeSpatialNavigation: () => void
 		
+		
 	}
 	type Direction = 'up' | 'down' | 'left' | 'right'
 	interface onBecameFocusedRect {
@@ -111,6 +112,7 @@ declare module '@noriginmedia/react-spatial-navigation' {
 		blockNavigationOut?: boolean
 		onClick?: () => void
 		onEnterPress?: () => void
+		onChange?: () => void
 		/**
 		 * @param direction
 		 * @return false to prevent default navigation behaviour.

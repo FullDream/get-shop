@@ -28,7 +28,6 @@ const EntryTel = ({ isValid, onSubmitNumber, ...props }: EntryTelProps) => {
 
 	useEffect(() => {
 		const handleKeyUp = (event: KeyboardEvent) => {
-
 			const resKeyDown = numData.filter((item) => {
 				const itemString = item.toString()
 				if (itemString === event.key) {
@@ -80,6 +79,7 @@ const EntryTel = ({ isValid, onSubmitNumber, ...props }: EntryTelProps) => {
 			<div className={styles.numPad}>
 				{numData.map((item) => (
 					<FocusableButton
+						key={item}
 						focusKey={item.toString()}
 						onEnterPress={() => onWriteNum(item)}
 						onClick={() => {
@@ -96,7 +96,7 @@ const EntryTel = ({ isValid, onSubmitNumber, ...props }: EntryTelProps) => {
 					<Checkbox
 						checked={isChecked}
 						onEnterPress={() => setChecked(!isChecked)}
-						onClick={() => setChecked(!isChecked)}
+						onChange={() => setChecked(!isChecked)}
 						name='personal'
 					/>
 					<p>Согласие на обработку персональных данных</p>
